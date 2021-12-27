@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+        routes:
+          - id: bank-account
+            uri: lb://bank-account-service
+            predicates:
+              - Path=/bank-account/**
+          - id: postcollab
+            uri: lb://post-collab
+            predicates:
+              - Path=/post/**
+
+eureka:
+  instance:
+    hostname: localhost
+#    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
