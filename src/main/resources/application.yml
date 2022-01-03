@@ -4,24 +4,37 @@ server:
 spring:
   application:
     name: api-gateway
+  sleuth:
+    sampler:
+      probability: 1.0
   cloud:
     gateway:
-        routes:
-          - id: bank-account
-            uri: lb://bank-account-service
-            predicates:
-              - Path=/bank-account/**
-          - id: postcollab
-            uri: lb://post-collab
-            predicates:
-              - Path=/post/**
+#        routes:
+#          - id: auth
+#            uri: lb://auth
+#            predicates:
+#              - Path=/auth/**
+#          - id: postcollab
+#            uri: lb://post-collab
+#            predicates:
+#              - Path=/post/**
+      discovery:
+        locator:
+          enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 
 eureka:
-  instance:
-    hostname: localhost
-#    prefer-ip-address: true
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:${random.uuid}
+
+jwt:
+  secret: secretkey
