@@ -9,15 +9,6 @@ spring:
       probability: 1.0
   cloud:
     gateway:
-#        routes:
-#          - id: auth
-#            uri: lb://auth
-#            predicates:
-#              - Path=/auth/**
-#          - id: postcollab
-#            uri: lb://post-collab
-#            predicates:
-#              - Path=/post/**
       discovery:
         locator:
           enabled: true

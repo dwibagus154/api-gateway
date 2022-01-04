@@ -41,19 +41,14 @@ public class JwtUtil {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
         } catch (SignatureException ex) {
             throw new JwtTokenMalformedException("Invalid Jwt Signature");
-//            log.error("Invalid Jwt Signature: {}", ex.getMessage());
         } catch (MalformedJwtException ex) {
             throw new JwtTokenMalformedException("Invalid formed jwt");
-//            log.error("Invalid Jwt Token: {}", ex.getMessage());
         } catch (ExpiredJwtException ex) {
             throw new JwtTokenMalformedException("Jwt is expired");
-//            log.error("Expired Jwt Token: {}", ex.getMessage());
         } catch (UnsupportedJwtException ex) {
             throw new JwtTokenMalformedException("Jwt is not supported");
-//            log.error("Unsupported Jwt token: {}", ex.getMessage());
         } catch (IllegalArgumentException ex) {
             throw new JwtTokenMissingException(("jwt claim is Ilegal "));
-//            log.error("Jwt claim string is empty: {}", ex.getMessage());
         }
     }
 }
