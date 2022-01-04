@@ -41,7 +41,6 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             }
 
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
-            System.out.println(token);
 
             try {
                 jwtUtil.ValidateToken(token);
