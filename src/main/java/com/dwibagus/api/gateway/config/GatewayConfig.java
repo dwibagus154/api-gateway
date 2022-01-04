@@ -19,6 +19,6 @@ public class GatewayConfig {
                 .route("auth", r -> r.path("/auth/**").filters(f -> f.filter(filter)).uri("lb://auth"))
                 .route("post-collab", r -> r.path("/post/**").filters(f -> f.filter(filter)).uri("lb://post-collab"))
                 .route("bank-account", r -> r.path("/bank-account/**").filters(f -> f.filter(filter)).uri("lb://bank-account-service"))
-                .route("order-service", r -> r.path("/order/**").filters(f -> f.filter(filter)).uri("lb://order")).build();
+                .route("log-service", r -> r.path("/log/**").filters(f -> f.filter(filter)).uri("lb://log-service")).build();
     }
 }
